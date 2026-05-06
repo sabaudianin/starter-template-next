@@ -29,7 +29,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      {/* suppressHydrationWarning on <html> is required next-themes adds a class to the html element before hydration and React would otherwise warn about the mismatch. */}
+      {/* suppressHydrationWarning on <html> is required next-themes adds a class to html element before hydration and React warn mismatch. */}
       <body className="min-h-full flex flex-col">   <ThemeProvider
         attribute="class"
         defaultTheme="system"

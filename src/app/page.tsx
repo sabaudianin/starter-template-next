@@ -3,7 +3,7 @@ import { auth } from "@/auth"
 import { ThemeToggle } from "@/components/theme-toggle/theme-toggle"
 
 export default async function LandingPage() {
-  const session = await auth()
+  const session = await auth();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
