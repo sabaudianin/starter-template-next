@@ -30,8 +30,7 @@ export default async function LandingPage() {
           Ship your SaaS faster
         </h1>
         <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-          Next.js starter with auth, database, email and dark mode —
-          ready to clone and deploy in minutes.
+          Next.js starter with auth, database, email and dark mode - ready to clone and deploy in minutes.
         </p>
         <Link href="/login"
           className="rounded-md bg-foreground text-background px-6 py-3 text-sm font-medium">
