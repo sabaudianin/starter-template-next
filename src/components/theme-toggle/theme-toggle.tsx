@@ -10,6 +10,7 @@ function useIsMounted() {
         () => false              // server snapshot not mounted
     )
 }
+// useSyncExternalStore returns false on the server and true on the client without triggering a state update cycle,so no cascading renders and no strict mode warning
 
 export function ThemeToggle() {
     const { theme, setTheme } = useTheme()
