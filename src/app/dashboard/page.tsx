@@ -2,6 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { SignOutButton } from "@/components/sign-out-button/sign-out-button"
 import { ThemeToggle } from "@/components/theme-toggle/theme-toggle"
+import Link from "next/link"
 
 export default async function Dashboard() {
     const session = await auth()
@@ -19,9 +20,9 @@ export default async function Dashboard() {
                 <span className="font-semibold">DASHBOARD</span>
                 <div className="flex items-center gap-3">
                     <ThemeToggle />
-                    <a href="/settings" className="text-sm text-muted-foreground hover:text-foreground">
+                    <Link href="/settings" className="text-sm text-muted-foreground hover:text-foreground">
                         Settings
-                    </a>
+                    </Link>
                     <SignOutButton />
                 </div>
             </nav>

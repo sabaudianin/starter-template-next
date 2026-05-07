@@ -1,6 +1,7 @@
 import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { updateProfile } from "@/app/actions/user"
+import Link from "next/link"
 
 export default async function Settings() {
     const session = await auth()
@@ -10,9 +11,9 @@ export default async function Settings() {
         <div className="min-h-screen bg-background text-foreground">
             <main className="max-w-2xl mx-auto px-6 py-12">
                 <div className="mb-8">
-                    <a href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground">
+                    <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground">
                         ← Back to dashboard
-                    </a>
+                    </Link>
                 </div>
 
                 <h1 className="text-xl font-semibold mb-8">Settings</h1>
