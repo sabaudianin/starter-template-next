@@ -3,7 +3,7 @@ import { redirect } from "next/navigation"
 import { updateProfile } from "@/app/actions/user"
 import Link from "next/link"
 
-export default async function Settings() {
+export default async function SettingsPage() {
     const session = await auth()
     if (!session) redirect("/login")
 

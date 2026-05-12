@@ -5,12 +5,12 @@ import { auth } from "@/auth";
 export const Navbar = async () => {
     const session = await auth();
     return (
-        <nav className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-border bg-background/80 backdrop-blur-sm">
+        <nav className="sticky top-0 z-50 flex items-center justify-between px-2 md:px-8 py-4 border-b border-border bg-background/80 backdrop-blur-sm">
             <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-md bg-foreground flex items-center justify-center">
                     <span className="text-background text-xs font-bold">S</span>
                 </div>
-                <span className="font-semibold text-base">SaaS Template</span>
+                <span className="font-semibold text-base">SaaS App</span>
             </div>
             <div className="flex items-center gap-3">
                 <ThemeToggle />

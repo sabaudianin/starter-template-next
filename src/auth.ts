@@ -13,9 +13,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
     Resend({
       apiKey: process.env.AUTH_RESEND_KEY,
-      from: "noreply@yourdomain.com",
+      from: process.env.EMAIL_FROM || "noreply@yourdomain.com",
     }),
   ],
+  pages: {
+    signIn: "/login",
+    verifyRequest: "/verify",
+    // error: "/error",
+  },
   callbacks: {
     session({ session, user }) {
       session.user.id = user.id;

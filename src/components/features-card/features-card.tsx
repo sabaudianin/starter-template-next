@@ -1,7 +1,7 @@
 
 export const FeaturesCard = () => {
     return (
-        <section className="max-w-4xl mx-auto px-6 pb-16 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <section className="max-w-4xl mx-auto px-6 pb-4 grid grid-cols-1 md:grid-cols-3 gap-4">
             {features.map((f) => (
                 <div
                     key={f.title}

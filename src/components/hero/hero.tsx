@@ -3,12 +3,12 @@ import Link from "next/link"
 export const Hero = () => {
     return (
         <section>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-1.5 text-xs text-muted-foreground mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 text-xs text-muted-foreground mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                 Next.js  • NextAuth  • Prisma  • Tailwind
             </div>
 
-            <h1 className="text-6xl font-semibold tracking-tight mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight mb-6 leading-tight">
                 Ship your SaaS
                 <br />
                 <span className="text-muted-foreground">in hours, not weeks !</span>

@@ -16,11 +16,17 @@ export default async function Dashboard() {
 
     return (
         <div className="min-h-screen bg-background text-foreground">
-            <nav className="flex items-center justify-between px-6 py-4 border-b border-border">
-                <span className="font-semibold">DASHBOARD</span>
+            <nav className="flex items-center justify-between px-2 md:px-6  py-4 border-b border-border">
+                <div className="flex items-center gap-4">
+                    <div className="w-7 h-7 rounded-md bg-foreground flex items-center justify-center">
+                        <span className="text-background text-xs font-bold">S</span>
+                    </div>
+                    <span className="hidden md:block font-semibold">Dashboard</span>
+
+                </div>
                 <div className="flex items-center gap-3">
                     <ThemeToggle />
-                    <Link href="/settings" className="text-sm text-muted-foreground hover:text-foreground">
+                    <Link href="/settings-page" className="rounded-md border border-border px-3 py-1.5 text-sm">
                         Settings
                     </Link>
                     <SignOutButton />
