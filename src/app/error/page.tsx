@@ -11,13 +11,14 @@ export default function ErrorPage({
     reset: () => void
 }) {
     useEffect(() => {
-        console.error(error)
-    }, [error])
+        if (error) {
+            console.error(error);
+        }
+    }, [error]);
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-background text-foreground px-6">
             <div className="w-full max-w-sm text-center">
-
                 <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center mx-auto mb-6">
                     <svg className="w-7 h-7 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
@@ -27,12 +28,13 @@ export default function ErrorPage({
 
                 <h1 className="text-xl font-semibold mb-2">Something went wrong</h1>
                 <p className="text-sm text-muted-foreground mb-8">
-                    {error.message ?? "An unexpected error occurred. Please try again."}
+
+                    {error?.message ?? "An unexpected error occurred. Please try again."}
                 </p>
 
                 <div className="flex flex-col gap-2">
                     <button
-                        onClick={reset}
+                        onClick={() => reset?.()} // Bezpieczne wywołanie reset
                         className="w-full rounded-md bg-foreground text-background py-2.5 text-sm font-medium hover:opacity-80 transition-opacity"
                     >
                         Try again
@@ -44,7 +46,6 @@ export default function ErrorPage({
                         Go home
                     </Link>
                 </div>
-
             </div>
         </div>
     )
