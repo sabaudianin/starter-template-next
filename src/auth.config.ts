@@ -1,0 +1,21 @@
+// src/auth.config.ts
+import type { NextAuthConfig } from "next-auth";
+import Google from "next-auth/providers/google";
+import Resend from "next-auth/providers/resend";
+
+export default {
+  providers: [
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    Resend({
+      apiKey: process.env.AUTH_RESEND_KEY,
+      from: process.env.EMAIL_FROM || "noreply@yourdomain.com",
+    }),
+  ],
+  pages: {
+    signIn: "/login",
+    verifyRequest: "/verify",
+  },
+} satisfies NextAuthConfig;

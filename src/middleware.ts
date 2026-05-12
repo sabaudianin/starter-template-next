@@ -7,14 +7,17 @@
 //   matcher: ["/dashboard/:path*", "/settings/:path*"],
 // };
 
-import { auth } from "@/auth";
 import { NextResponse } from "next/server";
+import NextAuth from "next-auth";
+import authConfig from "./auth.config";
 
 const roleRoutes: Record<string, string[]> = {
   "/admin": ["admin"],
   "/dashboard": ["user", "admin"],
   "/settings": ["user", "admin"],
 };
+
+const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const { pathname } = req.nextUrl;

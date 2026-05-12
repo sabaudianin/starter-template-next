@@ -1,33 +1,32 @@
+// src/auth.ts
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
-import Google from "next-auth/providers/google";
-import Resend from "next-auth/providers/resend";
+import authConfig from "./auth.config";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  providers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-    Resend({
-      apiKey: process.env.AUTH_RESEND_KEY,
-      from: process.env.EMAIL_FROM || "noreply@yourdomain.com",
-    }),
-  ],
-  pages: {
-    signIn: "/login",
-    verifyRequest: "/verify",
-    // error: "/error",
-  },
+  session: { strategy: "jwt" }, // Middleware wymaga strategii JWT, by działać bez bazy
+  ...authConfig,
   callbacks: {
-    session({ session, user }) {
-      session.user.id = user.id;
-      session.user.role = user.role;
-      session.user.username = user.username;
-      session.user.onboarded = user.onboarded;
+    async session({ session, token }) {
+      // Przy strategii JWT dane bierzemy z 'token', a nie z 'user'
+      if (token && session.user) {
+        session.user.id = token.sub as string;
+        session.user.role = token.role as string;
+        session.user.username = token.username as string;
+        session.user.onboarded = token.onboarded as boolean;
+      }
       return session;
+    },
+    async jwt({ token, user }) {
+      // Przy logowaniu przepisujemy dane z bazy do tokena
+      if (user) {
+        token.role = token.role;
+        token.username = token.username;
+        token.onboarded = token.onboarded;
+      }
+      return token;
     },
   },
 });

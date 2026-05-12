@@ -27,7 +27,7 @@ export const Hero = () => {
                     Get started free →
                 </Link>
                 <a
-                    href="https://github.com/sabaudianin/app-prisma-betterAuth"
+                    href="https://github.com/sabaudianin/starter-template-next"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-md border border-border px-6 py-2.5 text-sm hover:bg-muted transition-colors"
