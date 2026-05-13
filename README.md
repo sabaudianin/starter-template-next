@@ -37,24 +37,27 @@ Create a .env file in the root of the project with the following variables:
 
 Get a free PostgreSQL database at [neon.tech]
 
-`DATABASE_URL="postgresql://user:password@host/neondb?sslmode=require"`
-NextAuth
-Generate with: openssl rand -base64 32
-`AUTH_SECRET="your-generated-secret"`
+- `DATABASE_URL="postgresql://user:password@host/neondb?sslmode=require"`
+  NextAuth
+  Generate with: openssl rand -base64 32
+- `AUTH_SECRET="your-generated-secret"`
 
 Google OAuth
 Create at: [console.cloud.google.com] → APIs & Services → Credentials
-`GOOGLE_CLIENT_ID=""`
-`GOOGLE_CLIENT_SECRET=""`
+
+- `GOOGLE_CLIENT_ID=""`
+- `GOOGLE_CLIENT_SECRET=""`
 
 Resend (magic link email)
 Get your API key at: resend.com/api-keys
-`AUTH_RESEND_KEY=""`
+
+- `AUTH_RESEND_KEY=""`
 
 Note: Next.js reads .env.local at runtime. Prisma CLI reads .env for migrations. Keep both files in sync.
 
 ## Project structure
 
+```bash
 src/
 ├── app/
 │ ├── page.tsx # Landing page
@@ -81,15 +84,16 @@ src/
 prisma/
 ├── schema.prisma # Database schema
 └── migrations/ # Migration history
+```
 
 ## Database schema
 
 The following tables are created automatically by Prisma migrations:
 
-User - stores user accounts with name, email, image, role
-Account - OAuth provider accounts linked to users
-Session - active user sessions
-VerificationToken - magic link email tokens
+- User - stores user accounts with name, email, image, role
+- Account - OAuth provider accounts linked to users
+- Session - active user sessions
+- VerificationToken - magic link email tokens
 
 To add new fields to the User model, update prisma/schema.prisma and run:
 `npx prisma migrate dev --name your-change-description`
@@ -97,14 +101,15 @@ To add new fields to the User model, update prisma/schema.prisma and run:
 ## Authentication
 
 This template supports two sign-in methods out of the box:
-Google OAuth - one-click sign in with a Google account. Requires a Google Cloud project with OAuth 2.0 credentials.
-Magic link email - passwordless sign in via a link sent to the user's email. Powered by Resend.
-Both methods are handled by NextAuth v5 with the Prisma adapter - sessions and accounts are stored in your database automatically.
+
+- Google OAuth - one-click sign in with a Google account. Requires a Google Cloud project with OAuth 2.0 credentials.
+- Magic link email - passwordless sign in via a link sent to the user's email. Powered by Resend.
+- Both methods are handled by NextAuth v5 with the Prisma adapter - sessions and accounts are stored in your database automatically.
 
 ## Role-based access
 
 Users have a role field in the database ("user" by default). You can set a user to "admin" via Prisma Studio:
-bashnpx prisma studio
+`npx prisma studio`
 Protected routes are configured in src/middleware.ts:
 ts
 `const roleRoutes: Record<string, string[]> = {"/admin": ["admin"],"/dashboard": ["user", "admin"],"/settings-page": ["user", "admin"],}`
@@ -115,15 +120,15 @@ Add or modify routes and allowed roles as needed.
 
 Deploy to Vercel in 3 steps:
 
-Push your repository to GitHub
-Import the project at [vercel.com/new]
-Add all environment variables from .env in the Vercel dashboard
+- Push your repository to GitHub
+- Import the project at [vercel.com/new]
+- Add all environment variables from .env in the Vercel dashboard
 
-Prisma migrations run automatically on deploy via the build script:
-`"build": "prisma migrate deploy && next build"`
+- Prisma migrations run automatically on deploy via the build script:
+  `"build": "prisma migrate deploy && next build"`
 
-Google OAuth in production: add your Vercel URL to the authorized redirect URIs in Google Cloud Console:
-[https://your-app.vercel.app/api/auth/callback/google]
+- Google OAuth in production: add your Vercel URL to the authorized redirect URIs in Google Cloud Console:
+  [https://your-app.vercel.app/api/auth/callback/google]
 
 ## Customization
 
