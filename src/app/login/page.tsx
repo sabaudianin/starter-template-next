@@ -1,6 +1,7 @@
-import { signInWithGoogle, signInWithEmail } from "@/app/actions/auth"
-import { auth } from "@/auth"
-import { redirect } from "next/navigation"
+import { signInWithGoogle, signInWithEmail } from "@/app/actions/auth";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+import { SubmitButton } from "@/components/submit-button/submit-button";
 
 export default async function LoginPage() {
     const session = await auth()
@@ -17,11 +18,9 @@ export default async function LoginPage() {
                 </div>
 
                 <form action={signInWithGoogle} className="mb-4">
-                    <button type="submit"
-                        className="w-full rounded-md border border-border py-3 text-sm font-medium
-                       hover:bg-muted transition-colors">
+                    <SubmitButton>
                         Continue with Google
-                    </button>
+                    </SubmitButton>
                 </form>
 
                 <div className="relative mb-4">
@@ -45,11 +44,9 @@ export default async function LoginPage() {
                        px-3 py-3 text-sm outline-none focus:ring-2
                        focus:ring-foreground/20"
                     />
-                    <button type="submit"
-                        className="w-full rounded-md bg-foreground text-background
-                       py-2.5 text-sm font-medium">
+                    <SubmitButton>
                         Send magic link
-                    </button>
+                    </SubmitButton>
                     <p className="text-center text-xs text-muted-foreground">Log in via email works only for test address rafbobbob@gmail.com (Resend Sandbox Limitation)</p>
                 </form>
 
